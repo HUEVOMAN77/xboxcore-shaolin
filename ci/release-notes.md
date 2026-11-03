@@ -33,7 +33,7 @@
 4. The game starts as soon as it finds the files.
 
 > [!TIP]
-> If you don't grant all files access, put the game in `Android/data/com.racas.shaolinmonks/files/assets` instead. Settings, saves, logs and the shader cache are stored in `Android/data/com.racas.shaolinmonks/files`.
+> If you don't grant all files access, put the game in `Android/data/com.xboxcore.shaolinmonks/files/assets` instead. Settings, saves, logs and the shader cache are stored in `Android/data/com.xboxcore.shaolinmonks/files`.
 
 ## ✨ Features
 

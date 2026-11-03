@@ -18,9 +18,9 @@ The game's x86 code is statically recompiled ahead of time to C++ with [XboxXBE-
 2. Open **Shaolin Monks** and allow **all files access** when it asks (on Android 10, the **storage** permission).
 3. Copy the game into `/storage/emulated/0/ShaolinMonks`, or into a `ShaolinMonks` folder at the top of your SD card: either the disc image (`.iso`) or `default.xbe` with the rest of the disc's files and folders (`GAMEDATA.WA*`, `front`, `English`, `classic`, ...). The app creates the folder on the phone's storage once access is allowed, and starts the game as soon as it finds the files.
 
-If you don't grant that access, `Android/data/com.racas.shaolinmonks/files/assets` works too.
+If you don't grant that access, `Android/data/com.xboxcore.shaolinmonks/files/assets` works too.
 
-Settings (`shaolinmonks.toml`, `android.toml`, `layout.toml`), saves (`hdd`), logs and the shader cache are stored in `Android/data/com.racas.shaolinmonks/files`.
+Settings (`shaolinmonks.toml`, `android.toml`, `layout.toml`), saves (`hdd`), logs and the shader cache are stored in `Android/data/com.xboxcore.shaolinmonks/files`.
 
 The disc is the same for the USA and Europe releases (one `default.xbe`, SHA-1 `20e283c44fdb6062a760e4732d765036bac18067`).
 
@@ -53,7 +53,7 @@ A full Xbox controller on the screen:
 - **MK II and the bonus demo don't run.** The game plays the unlockable *Mortal Kombat II* by starting another program on the disc, `jarvos.xbe` (Midway's arcade emulator), and *The Suffering: Ties That Bind* demo with `Suffering2_Gold.xbe`. The Android host can't switch to another executable yet, so picking either one closes the app.
 - Nothing game-specific is patched yet: no widescreen FOV, frame rate unlock or cheats. The game runs at its own frame rate and 4:3 picture, letterboxed.
 
-Logs are in `Android/data/com.racas.shaolinmonks/files`. Please include the log when reporting a problem.
+Logs are in `Android/data/com.xboxcore.shaolinmonks/files`. Please include the log when reporting a problem.
 
 ## System Requirements
 - **Android** 10 or newer, arm64.

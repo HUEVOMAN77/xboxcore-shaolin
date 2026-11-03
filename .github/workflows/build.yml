@@ -3,8 +3,14 @@
 # secret. To make it, from Git Bash at the repo root:
 #   openssl enc -aes-256-cbc -md sha256 -pbkdf2 -iter 200000 -salt -in assets/default.xbe -out ci/default.xbe.enc -pass pass:<key>
 #
-# Secrets: XBE_KEY (the passphrase of ci/default.xbe.enc), KEYSTORE_BASE64 (the release .jks in base64),
+# Secrets: XBE_KEY (the passphrase of ci/default.xbe.enc), KEYSTORE_BASE64 (the release PKCS#12 in base64),
 # KEYSTORE_PASSWORD, KEY_ALIAS and KEY_PASSWORD. Without the keystore the APK has a debug signature.
+# The keystore is a .p12, not a .jks: app/build.gradle signs with storeType PKCS12, so openssl makes one with
+#   openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 12000 -nodes -subj /CN=... -sha256
+#   openssl pkcs12 -export -name <alias> -inkey key.pem -in cert.pem -out release.p12 -passout file:<passfile>
+# which needs no Java. KEYSTORE_BASE64 is `base64 -w0 release.p12`, padding included. Keep the file and its
+# password somewhere off GitHub too: losing them means a new signature, and the new APK will not install over
+# the old one.
 name: Build
 
 on:
@@ -60,7 +66,7 @@ jobs:
           # the one supported image: anything else recompiles to a broken game
           sha=$(sha1sum assets/default.xbe | cut -d' ' -f1)
           echo "default.xbe SHA-1 $sha"
-          if [ "$sha" != "20e283c44fdb6062a760e4732d765036bac18067" ]; then echo "::error::default.xbe is not the supported image"; exit 1; fi
+          if [ "$sha" != "ac48c199202b3a406981872120e68c8264838a5e" ]; then echo "::error::default.xbe is not the supported image"; exit 1; fi
 
       - name: Release key
         shell: bash
